@@ -8,7 +8,7 @@ class Users extends Component {
     };
 
     async componentDidMount() {
-        const { items: users } = await User.getUsers(32);
+        const users = await User.getUsers(32);
         console.log(users);
         this.setState({ users, isloaded: true });
     }

@@ -11,7 +11,6 @@ export default class User {
 
         try {
             const { data } = await Http.get("/users");
-            // return destructing in case the response have only item
             return data;
         } catch (error) {
             toast.error("NO Data Found");

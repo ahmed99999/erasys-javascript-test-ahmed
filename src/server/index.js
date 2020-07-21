@@ -5,6 +5,9 @@ const cors = require('cors');
 const axios = require('axios');
 const port = 3001;
 
+const API_END_POINT = 'http://localhost:3000/api';
+axios.defaults.baseURL = API_END_POINT;
+
 const app = express();
 const server = http.createServer(app);
 
@@ -20,8 +23,11 @@ server.listen(port, () => {
 });
 
 app.get('/api/users', async (req, res) => {
-    const { data } = await axios.get(
-        'http://localhost:3000/api/search?length=32'
-    );
-    res.send(data);
+    const UsersURL = '/search?length=32';
+    const { data } = await axios.get(UsersURL);
+    const { items } = data;
+    const profilesURL = '/profiles?ids=' + items.map(item => item.id).join('&ids=');
+    const { data: profiles } = await axios.get(profilesURL);
+    const users = profiles.map(profile => ({ ...items.find(item => item.id === profile.id), ...profile }));
+    res.send(users);
 });
