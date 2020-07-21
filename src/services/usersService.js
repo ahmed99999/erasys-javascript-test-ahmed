@@ -1,21 +1,38 @@
 import Http from './httpService';
+import { toast } from 'react-toastify';
 
-export class User {
+export default class User {
 
-    static getUsers(length) {
+    constructor(id = null) {
+        this.id = id;
+    }
+
+    static async getUsers(length) {
+
         try {
-            const response = await Http.get("/search", {
-                params: {
-                    length: length,
-                }
-            });
+            const { data } = await Http.get("/users");
             // return destructing in case the response have only item
-            return [...response["items"]];
+            return data;
         } catch (error) {
             toast.error("NO Data Found");
             console.error(error);
             return [];
         }
     }
-}
 
+    async getUser() {
+        try {
+            const users = await Http.get("/profiles", {
+                params: {
+                    ids: this.id
+                }
+            });
+            return users[0];
+        } catch (error) {
+            toast.error("NO Data Found");
+            console.error(error);
+            return null;
+        }
+    }
+
+}

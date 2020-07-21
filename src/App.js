@@ -10,6 +10,7 @@ function App() {
       <ToastContainer />
       <Switch>
         <Route path="/users" component={Users} />
+        <Redirect from="/" exact to="/users" />
       </Switch>
     </React.Fragment>
   );
