@@ -1,25 +1,65 @@
 import React, { Component } from 'react';
-import User from '../../services/usersService';
+import UserClass from '../../services/usersService';
+import User from '../User';
+import Loading from '../common/Loading';
+import Pagination from '../common/Pagination';
+import { paginate } from '../../utils/paginate';
 
 class Users extends Component {
     state = {
         users: [],
-        isloaded: false
+        currentPage: 1,
+        isloaded: false,
+        totalPages: 0,
+        NumberOfPages: 10
     };
 
     async componentDidMount() {
-        const users = await User.getUsers(32);
-        console.log(users);
-        this.setState({ users, isloaded: true });
+        const users = await UserClass.getUsers(32);
+        this.setState({ users, isloaded: true, totalPages: users.length });
     }
 
+    getPaginatedUsers = users => {
+        const { currentPage, NumberOfPages } = this.state;
+        return paginate(users, currentPage, NumberOfPages);
+    };
+
+    handlePage = currentPage => {
+        this.setState({ currentPage });
+    };
+
     render() {
-        const { users, isloaded } = this.state;
-
+        const { users, isloaded, currentPage, totalPages, NumberOfPages } = this.state;
+        const paginatedUsers = this.getPaginatedUsers(users);
         return (
-            <React.Fragment>
-
-            </React.Fragment>
+            <div>
+                {!isloaded && <Loading />}
+                {isloaded && <div>
+                    <div className="row" style={{ marginTop: '10px' }}>
+                        <div className="col-md-1"></div>
+                        <div className="col-md-10">
+                            <div className="row">
+                                {paginatedUsers.map(user => (
+                                    <User key={user.id} user={user} />
+                                ))}
+                            </div>
+                        </div>
+                        <div className="col-md-1"></div>
+                    </div>
+                    <div>
+                        <div className="col-md-1"></div>
+                        <div className="col-md-10">
+                            <Pagination
+                                currentPage={currentPage}
+                                totalPages={totalPages}
+                                handlePage={this.handlePage}
+                                NumberOfPages={NumberOfPages}
+                            />
+                        </div>
+                        <div className="col-md-1"></div>
+                    </div>
+                </div>}
+            </div>
         );
     }
 }
