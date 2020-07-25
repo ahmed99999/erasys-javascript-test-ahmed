@@ -14,7 +14,7 @@ const server = http.createServer(app);
 app.use(bodyParser.json());
 const corsOptions = {
     origin: 'http://localhost:3002',
-    methods: 'GET, POST, PATCH, DELETE',
+    methods: 'GET',
 };
 app.use(cors(corsOptions));
 
