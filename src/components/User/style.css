@@ -5,3 +5,8 @@
 .logged-out {
     color: red;
 }
+
+.card-container-class {
+    width: "18rem";
+    margin: '13px';
+}

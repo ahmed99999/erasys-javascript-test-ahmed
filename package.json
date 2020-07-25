@@ -13,6 +13,7 @@
     "joi-browser": "^13.4.0",
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.19",
+    "moment": "^2.27.0",
     "npm": "^6.14.7",
     "prop-types": "^15.6.2",
     "react": "^16.13.1",
