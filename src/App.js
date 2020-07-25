@@ -9,7 +9,7 @@ function App() {
     <React.Fragment>
       <ToastContainer />
       <Switch>
-        <Route path="/users" component={Users} />
+        <Route path="/users" component={() => <Users usersNumber={32} />} />
         <Redirect from="/" exact to="/users" />
       </Switch>
     </React.Fragment>

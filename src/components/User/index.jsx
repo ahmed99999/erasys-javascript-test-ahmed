@@ -23,7 +23,7 @@ const User = ({ user }) => {
     const { url: imageUrl } = { ...user.picture };
     const onlineStatusClass = (user.online_status === 'ONLINE') ? 'logged-in' : 'logged-out';
     return (
-        <div className="card card-container-class">
+        <div className="card" style={{ width: "18rem", margin: '13px' }}>
             <img src={imageUrl} className="card-img-top" alt="..." />
             <div className="card-body">
                 <h5 className="card-title">{`${user.personal.age} | ${user.name}`}</h5>

@@ -23,7 +23,8 @@ server.listen(port, () => {
 });
 
 app.get('/api/users', async (req, res) => {
-    const UsersURL = '/search?length=32';
+    const length = req.query.length;
+    const UsersURL = `/search?length=${length}`;
     const { data } = await axios.get(UsersURL);
     const { items } = data;
     const profilesURL = '/profiles?ids=' + items.map(item => item.id).join('&ids=');

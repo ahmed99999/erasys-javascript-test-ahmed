@@ -10,7 +10,11 @@ export default class User {
     static async getUsers(length) {
 
         try {
-            const { data } = await Http.get("/users");
+            const { data } = await Http.get("/users", {
+                params: {
+                    length: length
+                }
+            });
             return data;
         } catch (error) {
             toast.error("NO Data Found");

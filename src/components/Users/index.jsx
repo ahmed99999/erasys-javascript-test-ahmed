@@ -15,7 +15,8 @@ class Users extends Component {
     };
 
     async componentDidMount() {
-        const users = await UserClass.getUsers(32);
+        const { usersNumber } = this.props;
+        const users = await UserClass.getUsers(usersNumber);
         this.setState({ users, isloaded: true, totalPages: users.length });
     }
 
@@ -36,19 +37,19 @@ class Users extends Component {
                 {!isloaded && <Loading />}
                 {isloaded && <div>
                     <div className="row" style={{ marginTop: '10px' }}>
-                        <div className="col-md-1"></div>
-                        <div className="col-md-10">
+                        <div className="col-1"></div>
+                        <div className="col-10">
                             <div className="row">
                                 {paginatedUsers.map(user => (
                                     <User key={user.id} user={user} />
                                 ))}
                             </div>
                         </div>
-                        <div className="col-md-1"></div>
+                        <div className="col-1"></div>
                     </div>
                     <div>
-                        <div className="col-md-1"></div>
-                        <div className="col-md-10">
+                        <div className="col-1"></div>
+                        <div className="col-10">
                             <Pagination
                                 currentPage={currentPage}
                                 totalPages={totalPages}
@@ -56,7 +57,7 @@ class Users extends Component {
                                 NumberOfPages={NumberOfPages}
                             />
                         </div>
-                        <div className="col-md-1"></div>
+                        <div className="col-1"></div>
                     </div>
                 </div>}
             </div>
