@@ -4,6 +4,7 @@ import User from '../User';
 import Loading from '../common/Loading';
 import Pagination from '../common/Pagination';
 import { paginate } from '../../utils/paginate';
+import './style.css';
 
 class Users extends Component {
     state = {
@@ -36,7 +37,7 @@ class Users extends Component {
             <div>
                 {!isloaded && <Loading />}
                 {isloaded && <div>
-                    <div className="row" style={{ marginTop: '10px' }}>
+                    <div className="row users">
                         <div className="col-1"></div>
                         <div className="col-10">
                             <div className="row">
