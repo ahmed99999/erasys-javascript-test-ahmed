@@ -1,7 +1,6 @@
 import React from 'react';
 import reactDOM from 'react-dom';
 import Pagination from './index'
-import renderer from 'react-test-renderer';
 import './style.css';
 
 it('renders without crashing', () => {
