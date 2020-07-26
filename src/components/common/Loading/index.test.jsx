@@ -8,4 +8,4 @@ it('renders without crashing', () => {
     const div = document.createElement('div');
     div.className = "center";
     reactDOM.render(<Loading />, div);
-})
+});

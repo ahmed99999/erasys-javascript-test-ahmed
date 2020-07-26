@@ -1,13 +1,14 @@
 import React from 'react';
+import './style.css';
 
 const Pagination = ({ currentPage, totalPages, handlePage, NumberOfPages }) => {
 
-    const previous = ((currentPage - 1) < 1) ? "page-item disabled" : "page-item";
-    const next = (currentPage > (totalPages / NumberOfPages)) ? "page-item disabled" : "page-item";
+    const previousClass = ((currentPage - 1) < 1) ? "page-item disabled" : "page-item";
+    const nextClass = (currentPage > (totalPages / NumberOfPages)) ? "page-item disabled" : "page-item";
     return (
-        <nav aria-label="..." style={{ margin: "13px" }}>
+        <nav aria-label="..." className="pagination-class">
             <ul className="pagination">
-                <li className={previous}>
+                <li className={previousClass}>
                     <a className="page-link" onClick={() => handlePage(currentPage - 1)}>Previous</a>
                 </li>
                 {((currentPage - 1) >= 1) && <li className="page-item">
@@ -19,7 +20,7 @@ const Pagination = ({ currentPage, totalPages, handlePage, NumberOfPages }) => {
                 {(currentPage < (totalPages / NumberOfPages)) && <li className="page-item">
                     <a className="page-link" onClick={() => handlePage(currentPage + 1)}>{currentPage + 1}</a>
                 </li>}
-                <li className={next}>
+                <li className={nextClass}>
                     <a className="page-link" onClick={() => handlePage(currentPage + 1)}>Next</a>
                 </li>
             </ul>
